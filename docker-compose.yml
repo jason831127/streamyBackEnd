@@ -1,0 +1,16 @@
+version: "2"
+services:
+  # api: 
+  #   container_name: "api"
+  #   command: npm start
+  #   build: .
+  #   ports:
+  #     - "1337:1337"
+  #   volumes:
+  #     - .:/usr/src/app
+  #   links:
+  #     - redis
+  redis:
+    image: redis:4.0.1
+    ports:
+      - "6379:6379"
