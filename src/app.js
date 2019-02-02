@@ -6,7 +6,11 @@ require('power-string-number');
 
 module.exports = function (server) {
   const app = new Koa();
+  const utils = require('./lib/utils');
   app.context.server = server;
+  app.context.utils = utils;
+  //掛載通用 function 模組 (service layer也用得到)
+  app.context.server.utils = utils;
   app.use(bodyParser({ jsonLimit: '100mb', formLimit: '100mb' }));
   app.use(Service(server));
 
