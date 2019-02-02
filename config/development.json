@@ -1,0 +1,26 @@
+{
+  "comment" : [
+    "這是JSON文件的說明",
+    "【local.json】為【開發環境】",
+    "【development.json】為【測試環境】",
+    "【production.json】為【正式環境】",
+    "debug: 是否為 debug 模式，是的話會 console.log error",
+    "jwt: jwt 用的密鑰，用來檢查及判斷 mxid 跟 ak 是否合法，強烈建議三個環境的密鑰用不一樣的",
+    "rds: maria DB 關聯式資料庫，給後臺管理用",
+    "hugaapi: 遊戲 Server API 路徑，若資料異動須另外調用遊戲 Server 中的API，則打這個路徑"
+  ],
+  "debug":true,
+  "jwt" : {
+    "secret":""
+  },
+  "rds" : {
+    "host":"localhost:3307",
+    "account":"db_user",
+    "password":"db_user",
+    "database":"myDb"
+  },
+  "mycard" : {
+    "protocol": "https",
+    "url" : "b2b.mycard520.com.tw/MyBillingPay/api/"
+  }
+}

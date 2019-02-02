@@ -1,22 +1,18 @@
 const Router = require('koa-router');
 const router = new Router();
+const apiRoutes = require('./api');
 
 router.use('/line', require('./line').routes());
 
-router.get('/', async (ctx) => {
-  var mainRedis = ctx.server.redisSet.getAllClient()[0];
-
-  var res = await ctx.server.redisSet.pubMessage(mainRedis, 'changeSystem', 'test');
-
+router.get('/serverStatus', async (ctx) => {
   ctx.body = {
-    status: 'success',
-    message: 'hello, world!',
+    code: '200',
+    initDataReady: ctx.server.initDataReady,
     serverReady: ctx.server.serverReady,
-    redisReady: ctx.server.redisReady,
-    ip: ctx.ip,
-    ips: ctx.ips,
-    ctx: ctx
+    redisReady: ctx.server.redisReady
   };
 });
+
+router.use('/api', apiRoutes.routes());
 
 module.exports = router;

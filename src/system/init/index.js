@@ -12,7 +12,7 @@ function Init(server) {
   }
 
   this.server.attach(this);
-};
+}
 
 Init.prototype.do = function () {
   var self = this;
@@ -73,14 +73,14 @@ Init.prototype.update = function (message) {
         return Promise.all(ary2);
       })
       .then(function() {
-        console.log('[system.getMessage] finish');
+        logger.log('[system.getMessage] finish');
       })
       .catch(function (err) {
-        console.error('[getMessage error]', {channel: channel, message: message}, err);
+        logger.error('[getMessage error]', { message: message }, err);
       });
   }
+};
 
 
-}
 
 module.exports = Init;

@@ -78,7 +78,7 @@ Line.prototype.getLoginUrl = function (returnUrl) {
     + `&client_id=${this.clientId}`
     + `&redirect_uri=${returnUrl}`
     + `&state=${new Date().getTime().toString()}`
-    + `&scope=profile`;
+    + '&scope=profile';
 
   return loginUrl;
 };
