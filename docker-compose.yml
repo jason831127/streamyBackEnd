@@ -13,14 +13,14 @@ services:
   redis:
     image: redis:4.0.1
     ports:
-      - "6379:6379"
+      - "6385:6379"
   mydb:
     container_name: "mydb"
     build: ./build/docker/db/
     environment: 
       MYSQL_USER: "db_user"
-      MYSQL_PASSWORD: "db_user"
-      MYSQL_ROOT_PASSWORD: "db_user"
+      MYSQL_PASSWORD: "test1234"
+      MYSQL_ROOT_PASSWORD: "test1234"
       MYSQL_DATABASE: "mydb"
     ports:
-      - "3306:3307"
+      - "3308:3306"
