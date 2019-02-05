@@ -44,7 +44,7 @@ $ cd MyApp
 
 #### 3. Run `npm start`
 
-> [http://localhost:1337/](http://localhost:3000/) — Node.js server
+> [http://127.0.0.1:1337/](http://127.0.0.1:3000/) — Node.js server
 
 Now you can open your web app in a browser.
 

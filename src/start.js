@@ -5,34 +5,62 @@ const RedisSet = require('./system/redis');
 const InitSystem = require('./system/init');
 // 應用程式
 const App = require('./app');
-// console 中控台 的 library
-const HpsConsole = require('./lib/console/HpsConsole');
+//apollo server
+const Koa = require('koa');
+const { ApolloServer, gql } = require('apollo-server-koa');
+
+// Construct a schema, using GraphQL schema language
+const typeDefs = gql`
+    type Query {
+    hello: String
+  }`;
+
+// Provide resolver functions for your schema field
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!',
+  },
+};
+
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+const app = new Koa();
+apolloServer.applyMiddleware({ app });
+
+const port = 4000;
+const host = '127.0.0.1';
+
+app.listen(port, host, () =>
+  console.log(`🚀 Server ready at http://${host}:${port}${apolloServer.graphqlPath}`),
+);
+
 
 //參數設定 TODO:: productName 跟 phase 要搬去 NODE_ENV 變數中
 // let phase = process.env.PHASE || 'docker';
-// let productName = 'hps-platform';
 
 const init = async () => {
   //const config = await require('./lib/remoteConfig')(phase, productName);
-  const config = require('./config');
+  const config = require('../config');
   let PORT = 1337;
   let server = new Server();
   // 掛載 plugin
   server.config = config;
-  server.rds = require('knex')(config['hps-platform-rds']);
-  server.redisSet = new RedisSet(server, config['hps-platform-redis']);
+  server.rds = require('knex')(config['rds']);
+  server.redisSet = new RedisSet(server, config['redis']);
   server.initSystem = new InitSystem(server);
-  server.console = new HpsConsole(config.consoleConfig);
 
-  const app = App(server);
+  const restApp = App(server);
   // 0.0.0.0 -> 是為了偵聽 ipv4
-  app.listen(PORT, '0.0.0.0', () => {
+  restApp.listen(PORT, '0.0.0.0', () => {
     logger.log(`Server listening on port: ${PORT}`);
   });
+
+
+
 
 };
 
 init()
-  .catch((err)=>{
+  .catch((err) => {
     logger.error(err);
   });

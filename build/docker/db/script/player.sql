@@ -1,4 +1,4 @@
-USE hpsmaindb;
+USE mydb;
 CREATE TABLE IF NOT EXISTS `player` (
   `id` VARCHAR(256) NOT NULL COMMENT '玩家編號',
   `topicId` VARCHAR(256) NOT NULL COMMENT 'realtimeDatabase Topic ID',

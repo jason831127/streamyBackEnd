@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/start.js",
+    "start": "node ./src/start.js PHASE=local",
     "start-dev": "DEBUG=knex* PHASE=local nodemon --inspect ./src/start.js --ignore ./test/*",
     "test": "./node_modules/mocha/bin/_mocha ./test/api.test/case/**/**.test.js",
     "build-patch": "standard-version --prerelease build --release-as patch --skip.changelog=true --skip.tag=true",
@@ -25,9 +25,12 @@
     "standard-version": "^4.4.0"
   },
   "dependencies": {
+    "apollo-server-koa": "^2.3.3",
+    "aws-sdk": "^2.396.0",
     "convert-svg-to-jpeg": "^0.4.0",
     "fb": "^2.0.0",
     "generate-password": "^1.4.1",
+    "graphql": "^14.1.1",
     "hashring": "^3.2.0",
     "ioredis": "^4.0.2",
     "joi": "^14.0.2",

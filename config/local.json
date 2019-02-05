@@ -14,13 +14,66 @@
     "secret":""
   },
   "rds" : {
-    "host":"localhost:3307",
-    "account":"db_user",
-    "password":"db_user",
-    "database":"myDb"
+    "client": "mysql",
+    "connection": {
+      "host": "127.0.0.1",
+      "port": 3307,
+      "user": "db_user",
+      "password": "db_user",
+      "database": "mydb",
+      "multipleStatements": true
+    },
+    "pool": {
+      "min": 0,
+      "max": 10
+    }
   },
   "mycard" : {
     "protocol": "https",
     "url" : "b2b.mycard520.com.tw/MyBillingPay/api/"
-  }
+  },
+  "redis": [
+    {
+      "id": "main",
+      "type": "main",
+      "mode": "normal",
+      "host": "127.0.0.1",
+      "port": 6379
+    },
+    {
+      "id": "sub-main",
+      "type": "main",
+      "mode": "pubsub",
+      "host": "127.0.0.1",
+      "port": 6379
+    },
+    {
+      "id": "online",
+      "type": "online",
+      "mode": "normal",
+      "host": "127.0.0.1",
+      "port": 6379
+    },
+    {
+      "id": "sub-online",
+      "type": "online",
+      "mode": "pubsub",
+      "host": "127.0.0.1",
+      "port": 6379
+    },
+    {
+      "id": "player1",
+      "type": "player",
+      "mode": "normal",
+      "host": "127.0.0.1",
+      "port": 6379
+    },
+    {
+      "id": "player2",
+      "type": "player",
+      "mode": "normal",
+      "host": "127.0.0.1",
+      "port": 6379
+    }
+  ]
 }
