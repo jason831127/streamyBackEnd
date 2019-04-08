@@ -51,3 +51,5 @@ CREATE TABLE IF NOT EXISTS `player` (
 CREATE UNIQUE INDEX idx_plyaer_fbId ON player (`fbId`);
 CREATE UNIQUE INDEX idx_plyaer_lineId ON player (`lineId`);
 CREATE UNIQUE INDEX idx_plyaer_topicId ON player (`topicId`);
+
+
